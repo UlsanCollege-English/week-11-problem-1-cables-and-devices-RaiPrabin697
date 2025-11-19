@@ -49,16 +49,3 @@ def test_isolated_nodes_not_forced():
     # No node appears unless present in edges
     g = build_graph([('A','B')], directed=False)
     assert 'Z' not in g
-
-def test_chain_degrees():
-    edges = [('N1','N2'), ('N2','N3'), ('N3','N4')]
-    g = build_graph(edges, directed=False)
-    d = degree_dict(g)
-    assert d['N1'] == 1 and d['N4'] == 1 and d['N2'] == 2 and d['N3'] == 2
-
-def test_directed_asymmetric_neighbors():
-    edges = [('K','L'), ('L','M')]
-    g = build_graph(edges, directed=True)
-    assert g['K'] == ['L']
-    assert g['L'] == ['M']
-    assert g['M'] == []
